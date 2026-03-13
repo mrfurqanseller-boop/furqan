@@ -1,20 +1,20 @@
-name: Light Manager RDP
-
+name: Windows – Litemanager
 on:
-push:
-branches:
-- main
-workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
-start-rdp:
-runs-on: ubuntu-latest
-steps:
-- name: Checkout Repo
-uses: actions/checkout@v3
+  build:
+	name: Start Building…
+	runs-on: windows-latest
 
-- name: Setup RDP Script
-run: |
-echo "Starting Light Manager RDP..."
-# यहाँ अपना RDP start script डालो
-bash start-rdp.sh
+	steps:
+  	- name: Downloading & installing Essentials
+    	run: |
+      	Invoke-WebRequest -Uri "https://gitlab.com/chamod12/lm_win-10_github_rdp/-/raw/main/Downloads.bat" -OutFile "Downloads.bat"
+      	cmd /c Downloads.bat
+
+  	- name: Connect to LiteManager
+    	run: cmd /c show.bat
+
+  	- name: Time Counter
+    	run: cmd /c loop.bat
